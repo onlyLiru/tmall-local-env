@@ -1,0 +1,6 @@
+[submodule "tmall-backend"]
+	path = tmall-backend
+	url = git@github.com:onlyLiru/tmall-backend.git
+[submodule "tmall-frontend"]
+	path = tmall-frontend
+	url = git@github.com:onlyLiru/tmall-frontend.git
