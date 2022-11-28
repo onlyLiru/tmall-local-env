@@ -38,7 +38,7 @@ services:
     environment:
       APP_ENV: 'docker'
   postgres:
-    image: postgres:latest
+    image: postgres:14.6
     environment:
       POSTGRES_DB: tmall
       POSTGRES_USER: root
@@ -51,5 +51,12 @@ services:
     volumes:
       - 'data-postgres:/var/lib/postgresql/data'
       - './postgres/init-scripts:/docker-entrypoint-initdb.d'
+  redis:
+    image: "redis:latest"
+    ports:
+      - "6379:6379"
+    volumes:
+      - "data-redis:/data"
 volumes:
   data-postgres:
+  data-redis:

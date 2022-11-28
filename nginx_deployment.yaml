@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: nginx
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+  namespace: nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-pod
+  template:
+    metadata:
+      labels:
+        app: nginx-pod
+    spec:
+      hostNetwork: true
+      containers:
+        - name: nginx-server
+          image: nginx:latest  #镜像名称+版本
+          imagePullPolicy: Never   #表示镜像来源，IfNotPresent本地没有就从hub仓库拉取，Never表示只从本地
+          ports:
+            - containerPort: 80
+          env:
+            # 指定日志文件路径
+            - name: logging.path
+              value: /var/logs

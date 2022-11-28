@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: tmall
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tmall
+  namespace: tmall
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tmall_adonis-server-pod
+  template:
+    metadata:
+      labels:
+        app: tmall_adonis-server-pod
+    spec:
+      hostNetwork: true
+      containers:
+        - name: tmalli-adonis-server
+          image: tmall_adonis-server:latest  #镜像名称+版本
+          imagePullPolicy: Never   #表示镜像来源，IfNotPresent本地没有就从hub仓库拉取，Never表示只从本地
+          ports:
+            - containerPort: 3000
+          env:
+            # 指定日志文件路径
+            - name: logging.path
+              value: /var/logs
