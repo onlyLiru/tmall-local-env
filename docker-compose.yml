@@ -38,7 +38,7 @@ services:
     environment:
       APP_ENV: 'docker'
   postgres:
-    image: postgres:14.6
+    image: postgres:latest
     environment:
       POSTGRES_DB: tmall
       POSTGRES_USER: root
